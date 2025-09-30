@@ -26,8 +26,8 @@ body {
 }
 
 .app-root {
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 850;
+  margin: 10 auto;
   padding: 20px;
 }
 
@@ -43,4 +43,4 @@ input[aria-label="todo"] {
   padding: 8px;
 }
 
-button { padding: 8px 12px }
+button { padding: 10px 12px }

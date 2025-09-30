@@ -1,10 +1,12 @@
 "use client"
 import React from 'react'
 import { useTodos } from '../data/TodoContext'
-import TodoItem from '../components/TodoItem'
+import { TodoItem } from '../components/TodoItem'
+import Link from 'next/link'
 
 export default function Home() {
   const { todos, toggleTodo, deleteTodo } = useTodos()
+
 
   return (
     <div>
@@ -26,13 +28,18 @@ export default function Home() {
                     onToggle={toggleTodo}
                     onDelete={deleteTodo}
                   />
-    ))}
-  </ul>
-</div>
-</label>
-
-        )}
+                ))}
+              </ul>
+          </div>
+          </label>
+         )}
+         <div className= 'flex mt-5 justify-center'>
+          <button className='flex items-center justify-center bg-gray-300 rounded w-20 h-10 text-black  font-bold transition hover:scale-95' >
+            <Link href='/new'>Add</Link>
+          </button>
+         </div>
       </section>
+
     </div>
   )
 }

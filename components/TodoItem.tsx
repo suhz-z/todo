@@ -8,7 +8,7 @@ type Props = {
   onDelete: (id: number) => Promise<void>
 }
 
-export default function TodoItem({ todo, onToggle, onDelete }: Props) {
+export const TodoItem =({ todo, onToggle, onDelete }: Props) =>{
   const [loadingToggle, setLoadingToggle] = useState(false)
   const [loadingDelete, setLoadingDelete] = useState(false)
 
