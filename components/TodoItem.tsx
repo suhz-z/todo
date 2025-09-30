@@ -52,7 +52,7 @@ export default function TodoItem({ todo, onToggle, onDelete }: Props) {
       <div>
         <button
           onClick={handleDelete}
-          style={{ background: 'transparent', border: 'none', color: 'red', cursor: 'pointer' }}
+          className='text-red-500 transition hover:rounded hover:bg-red-500 hover:text-white px-2 py-1'
           disabled={loadingToggle || loadingDelete}
         >
           {loadingDelete ? 'Deleting...' : 'Delete'}

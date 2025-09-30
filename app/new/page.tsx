@@ -8,7 +8,7 @@ export default function New() {
 
   return (
     <div>
-      <h2 className='text-2xl font-bold mb-4'>Add New Todo</h2>
+      <h2 className='text-2xl font-bold mb-4 text-red-400'>Add New Todo</h2>
       <TodoForm onAdd={addTodo} />
     </div>
   )
