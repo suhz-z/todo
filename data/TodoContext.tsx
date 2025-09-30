@@ -18,10 +18,7 @@ export const useTodos = () => {
   return ctx
 }
 
-const API_URL =
-  typeof window !== 'undefined'
-    ? `${window.location.origin}/api/todos`
-    : 'http://localhost:3000/api/todos'
+const API_URL = '/api/todos'
 
 export const TodoProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [todos, setTodos] = useState<Todo[]>([])
