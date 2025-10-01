@@ -1,52 +1,55 @@
 import { NextRequest, NextResponse } from 'next/server'
-import fs from 'fs'
-import path from 'path'
+import { PrismaClient } from '@prisma/client'
 
-const filePath = path.join(process.cwd(), 'todos.json')
+const prisma = new PrismaClient()
 
-function readTodos() {
-  if (!fs.existsSync(filePath)) return []
-  const data = fs.readFileSync(filePath, 'utf-8')
+export async function GET() {
   try {
-    return JSON.parse(data)
-  } catch {
-    return []
+    const todos = await prisma.todo.findMany()
+    return NextResponse.json(todos)
+  } catch (error) {
+    console.error(error)
+    return NextResponse.json({ error: 'Failed to fetch todos' }, { status: 500 })
   }
 }
 
-function writeTodos(todos: { id: number; text: string; completed: boolean }[]) {
-  fs.writeFileSync(filePath, JSON.stringify(todos, null, 2))
-}
-
-export async function GET() {
-  const todos = readTodos()
-  return NextResponse.json(todos)
-}
-
 export async function POST(req: NextRequest) {
-  const { text } = await req.json()
-  if (!text) return NextResponse.json({ error: 'Text required' }, { status: 400 })
-  const todos = readTodos()
-  const newTodo = { id: Date.now(), text, completed: false }
-  todos.push(newTodo)
-  writeTodos(todos)
-  return NextResponse.json(newTodo)
+  try {
+    const { text } = await req.json()
+    if (!text) return NextResponse.json({ error: 'Text required' }, { status: 400 })
+    const newTodo = await prisma.todo.create({
+      data: { text, completed: false }
+    })
+    return NextResponse.json(newTodo)
+  } catch (error) {
+    console.error(error)
+    return NextResponse.json({ error: 'Failed to create todo' }, { status: 500 })
+  }
 }
 
 export async function PUT(req: NextRequest) {
-  const { id, completed } = await req.json()
-  const todos = readTodos()
-  const todo = todos.find((t: { id: any }) => t.id === id)
-  if (!todo) return NextResponse.json({ error: 'Not found' }, { status: 404 })
-  todo.completed = completed
-  writeTodos(todos)
-  return NextResponse.json(todo)
+  try {
+    const { id, completed } = await req.json()
+    const updatedTodo = await prisma.todo.update({
+      where: { id },
+      data: { completed }
+    })
+    return NextResponse.json(updatedTodo)
+  } catch (error) {
+    console.error(error)
+    return NextResponse.json({ error: 'Todo not found or update failed' }, { status: 404 })
+  }
 }
 
 export async function DELETE(req: NextRequest) {
-  const { id } = await req.json()
-  let todos = readTodos()
-  todos = todos.filter((t: { id: any }) => t.id !== id)
-  writeTodos(todos)
-  return NextResponse.json({ success: true })
+  try {
+    const { id } = await req.json()
+    await prisma.todo.delete({
+      where: { id }
+    })
+    return NextResponse.json({ success: true })
+  } catch (error) {
+    console.error(error)
+    return NextResponse.json({ error: 'Todo not found or delete failed' }, { status: 404 })
+  }
 }
