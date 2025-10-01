@@ -17,13 +17,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <TodoProvider>
           <div className="app-root">
-            <header className="header"><Link href='/' className='text-flex font-bold font-poppins hover:text-gray-300 transition'>Todo App </Link>
-              <nav className='nav font-poppins'>
-                <Link href="/" className='hover:font-bold'>Home</Link>
+            <header className="header"><Link href='/' className='p-2 scale-120 h-12 font-bold font-poppins text-white hover:text-gray-300 transition'>Todo App </Link>
+              <nav className='nav font-poppins text-gray-200 p-2'>
+                <Link href="/" className=' hover:font-bold '>Home</Link>
                 {' | '}
-                <Link href="/new" className='hover:font-bold'>New</Link>
+                <Link href="/new" className='hover:font-bold '>New</Link>
                 {' | '}
-                <Link href="/about" className='hover:font-bold'>About</Link>
+                <Link href="/about" className=' hover:font-bold '>About</Link>
               </nav>
             </header>
             <main>{children}</main>

@@ -27,8 +27,8 @@ body {
 
 .app-root {
   max-width: 850;
-  margin: 10 auto;
-  padding: 20px;
+  margin: 40 auto;
+  padding: auto;
 }
 
 .header {
