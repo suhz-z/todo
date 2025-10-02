@@ -9,7 +9,7 @@ export async function GET() {
     return NextResponse.json(todos)
   } catch (error) {
     console.error(error)
-    return NextResponse.json({ error: 'Failed to fetch todos' }, { status: 500 })
+    return NextResponse.json({ error: 'Failed to fetch todos' }, { status: 400 })
   }
 }
 
@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(newTodo)
   } catch (error) {
     console.error(error)
-    return NextResponse.json({ error: 'Failed to create todo' }, { status: 500 })
+    return NextResponse.json({ error: 'Failed to create todo' }, { status: 400 })
   }
 }
 
