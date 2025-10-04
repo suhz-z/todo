@@ -23,19 +23,23 @@ export default function DashboardPage() {
   if (!user) return null;
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold">Welcome, {user.name}</h1>
+    <div className=''>
+      <h1 className="flex text-2xl py-2">Welcome, <p className='font-bold text-red-400'>{ user.name}</p></h1>
+      <div className='py-2'>
       <Button
         onClick={logout}
         variant={"outline"}
-        className="border-red-500 text-red-400 hover:text-white rounded hover:bg-red-700 hover:scale-105 transition"
+        className="flex py-2 border-red-500 text-red-400 hover:text-white rounded hover:bg-red-700 hover:scale-105 transition"
       >
         Logout
       </Button>
+      </div>
+      <div className='p-6 mt-5'>
       <TodoForm onAdd={addTodo}/>
+      <div className='mt-5'>
         <label className="font-semibold justify-between">
           You have {todos.length} {todos.length === 1 ? "todo left" : "todos"}
-          <Card className="mt-4 p-4  bg-black backdrop-blur-md border border-white/20 shadow-xl rounded-2xl ">
+          <Card className="mt-1 p-4  bg-black backdrop-blur-md border border-white/20 shadow-xl rounded-2xl ">
             <ul className="space-y-2 ">
               {todos.map((todo) => (
                 <TodoItem
@@ -47,7 +51,10 @@ export default function DashboardPage() {
               ))}
             </ul>
           </Card>
+          
         </label>
+        </div>
+        </div>
     </div>
   );
 }
