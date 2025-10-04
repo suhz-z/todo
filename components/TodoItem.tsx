@@ -1,6 +1,9 @@
 "use client"
 import React, { useState } from 'react'
 import { Todo } from '../data/TodoContext'
+import { Checkbox } from './ui/checkbox'
+import { Button } from './ui/button'
+import { Label } from './ui/label'
 
 type Props = {
   todo: Todo
@@ -35,29 +38,33 @@ export const TodoItem =({ todo, onToggle, onDelete }: Props) =>{
   }
 
   return (
-    <li style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 0', borderBottom: '1px solid #eee' }}>
-      <div>
-        <label style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-          <input
-            type="checkbox"
-            checked={todo.completed}
-            onChange={handleToggle}
-            disabled={loadingToggle || loadingDelete}
-          />
-<span style={{ textDecoration: todo.completed ? 'line-through' : 'none', color: todo.completed ? 'green' : 'white' }}>
-            {todo.text}
-          </span>
-        </label>
-      </div>
-      <div>
-        <button
+    <li className="group flex items-center justify-between py-2 border-b border-white/45 hover:rounded-sm hover:bg-white/10">
+      <Label className="flex items-center gap-2 cursor-pointer font-semibold">
+        <Checkbox
+          className='flex ml-2 me-2'
+          checked={todo.completed}
+          onCheckedChange={handleToggle}
+          disabled={loadingToggle || loadingDelete}
+        />
+        <span
+          className={`${
+            todo.completed ? "line-through text-green-600" : "text-white"
+          }`}
+        >
+          {todo.text}
+        </span>
+      </Label>
+
+      <div className="flex px-2">
+        <Button
+          className='flex mb-1 hover:bg-red-500 transition group-hover:font-bold group-hover:border-red-500 '
+          variant="outline"
           onClick={handleDelete}
-          className='text-red-500 transition hover:rounded hover:bg-red-500 hover:text-white px-2 py-1'
           disabled={loadingToggle || loadingDelete}
         >
-          {loadingDelete ? 'Deleting...' : 'Delete'}
-        </button>
+          {loadingDelete ? "Deleting..." : "Delete"}
+        </Button>
       </div>
     </li>
-  )
+  );
 }

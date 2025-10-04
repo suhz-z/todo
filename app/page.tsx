@@ -1,25 +1,56 @@
-"use client"
-import React from 'react'
-import { useTodos } from '../data/TodoContext'
-import { TodoItem } from '../components/TodoItem'
-import Link from 'next/link'
+"use client";
+import React from "react";
+import { useTodos } from "../data/TodoContext";
+import { TodoItem } from "../components/TodoItem";
+import Link from "next/link";
+import { useAuth } from "@/data/authContext";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 export default function Home() {
-  const { todos, toggleTodo, deleteTodo } = useTodos()
+  const { todos, toggleTodo, deleteTodo } = useTodos();
+  const { user } = useAuth();
 
+  if (!user) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen text-center text-white">
+        <h1 className="text-3xl font-bold">Welcome to Todo App</h1>
+        <p className="text-gray-400 mt-2">Sign in to create your personal todos.</p>
+        <Link
+          href="/login"
+          className="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded text-white"
+        >
+          Login
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div>
       <section>
-        <h2 className='text-2xl font-bold text-red-400'>Your Todos</h2>
+        <header>
+          <h2 className="text-3xl font-bold text-red-400 ">Your Todos</h2>
+        </header>
+        <div className="absolute right-135 top-35">
+          <Button
+            variant="outline"
+            className="border-green-500 hover:bg-green-500 hover:text-black"
+          >
+            <Link href="/new">Add</Link>
+          </Button>
+        </div>
         {todos.length === 0 ? (
           <p>
-            No todos yet. Add one on the{' '}
-            <a href="/new" className='hover:font-bold hover'>New</a> page.
+            No todos yet. Add one on the{" "}
+            <a href="/new" className="hover:font-bold hover">
+              New
+            </a>
           </p>
         ) : (
-          <label className='font-semibold'>You have {todos.length} {todos.length === 1 ? 'todo left' : 'todos'}
-          <div className="mt-4 p-4 rounded-2xl backdrop-blur-md shadow-lg border border-white/30">
+          <label className="font-semibold justify-between">
+            You have {todos.length} {todos.length === 1 ? "todo left" : "todos"}
+            <Card className="mt-4 p-4  bg-black backdrop-blur-md border border-white/20 shadow-xl rounded-2xl ">
               <ul className="space-y-2 ">
                 {todos.map((t) => (
                   <TodoItem
@@ -30,16 +61,18 @@ export default function Home() {
                   />
                 ))}
               </ul>
-          </div>
+              <div className="flex mt-5 justify-center">
+                <Button
+                  variant={"outline"}
+                  className=" w-185 scale-110 border-green-500 hover:bg-green-500 hover:text-black"
+                >
+                  <Link href="/new">Add</Link>
+                </Button>
+              </div>
+            </Card>
           </label>
-         )}
-         <div className= 'flex mt-5 justify-center'>
-          <button className='flex items-center justify-center bg-gray-300 rounded w-20 h-10 text-black  font-bold transition hover:scale-95' >
-            <Link href='/new'>Add</Link>
-          </button>
-         </div>
+        )}
       </section>
-
     </div>
-  )
+  );
 }
