@@ -2,8 +2,13 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        poppins: ["Poppins", "sans-serif"],
+        sans: ["Poppins", "sans-serif"],
       },
     },
   },
+  plugins: [
+  require('tailwindcss-text-fill-stroke'),
+  ],
+
 };
+

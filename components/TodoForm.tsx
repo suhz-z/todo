@@ -1,5 +1,7 @@
 "use client"
 import React, { useState } from 'react'
+import { Button } from '@/components/ui/button'
+import { Input } from './ui/input'
 
 type Props = { onAdd: (text: string) => Promise<void> }
 
@@ -23,17 +25,17 @@ export default function TodoForm({ onAdd }: Props) {
   }
 
   return (
-    <form onSubmit={submit} style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
-      <input className='border border-gray-300 rounded px-4 py-2 text-white bg-transparent'
+    <form onSubmit={submit} className='group flex gap-2 mb-2 '>
+      <Input className='group border-white/70 placeholder:text-white/30 focus:ring-1 focus:border-white/50'
         aria-label="todo"
         value={text}
-        onChange={(e) => setText(e.target.value.toUpperCase())}
+        onChange={(e) => setText(e.target.value)}
         placeholder="Add a new todo"
         disabled={loading}
       />
-      <button type="submit" disabled={loading} className=' text-white transition hover:font-semibold px-3 py-2 rounded hover:bg-gray-100 hover:text-black'>
+      <Button  variant='outline' type="submit" disabled={loading} className=' group-hover:border-green-500 group-focus:border-green-500 hover:border-green-500 flex gap-8 '>
         {loading ? 'Adding...' : 'Add'}
-      </button>
+      </Button>
     </form>
   )
 }
