@@ -3,11 +3,11 @@ import { PrismaClient } from "@prisma/client";
 import { getUserFromToken } from "../auth/auth";
 
 const prisma=new PrismaClient()
-// -----------------------------
-// GET: fetch todos for logged-in user
-// -----------------------------
+
+
+
 export async function GET(req: NextRequest) {
-  console.log("Authorization header:", req.headers.get("authorization"));
+  console.log("incoming authorization:", req.headers.get("authorization"));
   const user = await getUserFromToken(req);
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
@@ -23,9 +23,7 @@ export async function GET(req: NextRequest) {
   }
 }
 
-// -----------------------------
-// POST: create new todo
-// -----------------------------
+
 export async function POST(req: NextRequest) {
   const user = await getUserFromToken(req);
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -45,9 +43,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// -----------------------------
-// PUT: toggle todo completed
-// -----------------------------
+
 export async function PUT(req: NextRequest) {
   const user = await getUserFromToken(req);
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -71,9 +67,7 @@ export async function PUT(req: NextRequest) {
   }
 }
 
-// -----------------------------
-// DELETE: remove a todo
-// -----------------------------
+
 export async function DELETE(req: NextRequest) {
   const user = await getUserFromToken(req);
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

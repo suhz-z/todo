@@ -1,24 +1,29 @@
+// lib/auth.ts
 import { NextRequest } from "next/server";
 import jwt from "jsonwebtoken";
+import { PrismaClient } from "@prisma/client";
 
-export type UserPayload = { id: number; email: string; name?: string };
+const prisma = new PrismaClient();
+const JWT_SECRET = process.env.JWT_SECRET || "supersecret"; // must match login route
 
-export function signToken(user: UserPayload) {
-  return jwt.sign(user, process.env.JWT_SECRET!, { expiresIn: "7d" });
-}
-
-export async function getUserFromToken(req: NextRequest): Promise<UserPayload | null> {
-  const authHeader = req.headers.get("authorization");
-  if (!authHeader) return null;
-
-  const token = authHeader.split(" ")[1];
-  if (!token) return null;
-
+export async function getUserFromToken(req: NextRequest) {
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as UserPayload;
-    return decoded;
+    const authHeader = req.headers.get("authorization");
+    if (!authHeader || !authHeader.startsWith("Bearer ")) return null;
+
+    const token = authHeader.split(" ")[1];
+    const decoded = jwt.verify(token, JWT_SECRET) as { id: number; email: string };
+
+    if (!decoded?.id) return null;
+
+    const user = await prisma.user.findUnique({
+      where: { id: decoded.id },
+      select: { id: true, email: true, name: true },
+    });
+
+    return user;
   } catch (err) {
-    console.error("Token verification failed:", err);
+    console.error("Error in getUserFromToken:", err);
     return null;
   }
 }
