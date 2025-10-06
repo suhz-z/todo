@@ -1,4 +1,4 @@
-// app/(dashboard)/layout.tsx
+
 "use client";
 
 import React from "react";
@@ -10,9 +10,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const { user, logout } = useAuth();
 
   return (
-    <div className=" font-poppins flex flex-col text-white">
-      <header className="flex justify-between items-center px-6 py-4 border-b border-gray-700">
-        <h1 className="text-xl font-bold">Dashboard</h1>
+    <div className=" font-poppins flex-col text-white">
+      <header className="flex justify-between items-center px-6 py-4 border-b border-gray-700 bg-gray-500/10">
+        <h1 className="text-xl font-bold font-poppins">Dashboard</h1>
         <nav className="flex items-center gap-4">
           <Link href="/" className="hover:font-bold">
             Home

@@ -6,7 +6,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Label } from "@radix-ui/react-label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import Link from "next/link"; // ✅ corrected import
+import Link from "next/link";
 
 export default function SignupPage() {
   const [name, setName] = useState("");
@@ -54,8 +54,8 @@ export default function SignupPage() {
   };
 
   return (
-    <div className=" items-center flex-col">
-      <Card className="mx-50 my-17 bg-black/60 backdrop-blur-md border border-white/20 shadow-xl rounded-2xl">
+    <div className="mx-50 my-17">
+      <Card className=" bg-black/60 backdrop-blur-md border border-white/20 shadow-xl rounded-2xl">
         <CardHeader>
           <CardTitle className="text-blue-400">Create a new account</CardTitle>
         </CardHeader>
@@ -129,7 +129,7 @@ export default function SignupPage() {
         </CardFooter>
         
       </Card>
-         <p className="text-center text-white/70">
+         <p className="py-8 text-center text-white/70">
             Already have an account?{" "}
             <Link href="/login" className="text-green-400 hover:text-green-500 font-semibold">
               Login

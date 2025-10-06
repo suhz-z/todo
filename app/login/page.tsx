@@ -52,8 +52,8 @@ export default function LoginPage() {
   };
 
 return (
-  <div className="items-center flex-col">
-    <Card className="mx-50 my-17 bg-black backdrop-blur-md border border-white/20 shadow-xl rounded-2xl">
+  <div className="mx-50 my-17">
+    <Card className=" bg-black backdrop-blur-md border border-white/20 shadow-xl rounded-2xl">
       <CardHeader>
         <CardTitle className="text-red-400">Login to your account</CardTitle>
       </CardHeader>
@@ -81,14 +81,14 @@ return (
           </div>
         </form>
       </CardContent>
-      <CardFooter className="flex-col gap-2">
+      <CardFooter className="flex-col">
         <Button form="login" className='border-green-500 hover:bg-green-500 w-full hover:font-bold transition ' 
         variant='outline'type="submit" disabled={loading} >
           {loading ? "Logging in..." : "Login"}
         </Button>
       </CardFooter>
     </Card>
-    <p className=" text-center text-white/70">
+    <p className="py-8 text-center text-white/70">
   New user?{" "}
   <Link href="/signup" className="text-green-400 hover:underline" >
     Sign up

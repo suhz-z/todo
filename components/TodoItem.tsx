@@ -4,6 +4,7 @@ import { Todo } from '../data/TodoContext'
 import { Checkbox } from './ui/checkbox'
 import { Button } from './ui/button'
 import { Label } from './ui/label'
+import { Card } from './ui/card'
 
 type Props = {
   todo: Todo
@@ -38,7 +39,7 @@ export const TodoItem =({ todo, onToggle, onDelete }: Props) =>{
   }
 
   return (
-    <li className="group flex items-center justify-between py-2 border-b border-white/45 hover:rounded-sm hover:bg-white/10">
+    <li className="group flex items-center justify-between py-2 border-b hover:border border-white/45 hover:rounded-sm hover:bg-white/10">
       <Label className="flex items-center gap-2 cursor-pointer font-semibold">
         <Checkbox
           className='flex ml-2 me-2'

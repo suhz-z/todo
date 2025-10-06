@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { PrismaClient } from "@prisma/client";
+import { loginSchema } from "@/lib/validation/authSchema";
 
 const prisma = new PrismaClient();
 
@@ -9,13 +10,9 @@ const JWT_SECRET = process.env.JWT_SECRET || "supersecret";
 
 export async function POST(req: NextRequest) {
   try {
-    const { email, password } = await req.json();
-    if (!email || !password) {
-      return NextResponse.json(
-        { error: "Email and password required" },
-        { status: 400 }
-      );
-    }
+    const body = await req.json();
+    const parsed = loginSchema.parse(body);
+    const {  email, password } = parsed;
 
     const user = await prisma.user.findUnique({ where: { email } });
     if (!user)

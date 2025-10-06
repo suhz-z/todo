@@ -43,10 +43,16 @@ body {
 }
 
 .app-root {
-  max-width: 850;
-  margin: 40 auto;
+  max-width: 850px;
+  margin:  auto;
   padding: auto;
 }
+
+.top-bg {
+  max-width: none;
+
+}
+
 
 .header {
   display: flex;

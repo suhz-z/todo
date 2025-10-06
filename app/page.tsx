@@ -40,10 +40,10 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <div className="px-6">
       <section>
-        <header className="flex justify-between">
-          <h2 className="text-3xl font-bold text-red-400 ">Your Todos</h2>
+        <header className="flex px-5 py-5 justify-between">
+          <h2 className="text-3xl py- font-bold text-red-400 ">Your Todos</h2>
           <div className="flex">
             <Button
               variant="outline"
@@ -53,15 +53,15 @@ export default function Home() {
             </Button>
           </div>
         </header>
-        <div className="p-4 mt-10">
+        <div className="p-6 mt-5">
           
           {todos.length === 0 ? (
             null
           ) : (
-            <label className=" font-semibold justify-between">
+            <label className=" font-semibold">
               You have {todos.length}{" "}
               {todos.length === 1 ? "todo left" : "todos"}
-              <Card className="mt-1 p-4  bg-black backdrop-blur-md border border-white/20 shadow-xl rounded-2xl ">
+              <Card className=" mt-1 p-4  bg-black backdrop-blur-md border border-white/20 shadow-xl rounded-2xl ">
                 <ul className="space-y-2 ">
                   {todos.map((t) => (
                     <TodoItem
@@ -75,7 +75,7 @@ export default function Home() {
                 <div className="flex mt-5 justify-center">
                   <Button
                     variant={"outline"}
-                    className="w-178 scale-110 border-green-500 hover:bg-green-500 hover:text-black"
+                    className="w-165 scale-110 border-green-500 hover:bg-green-500 hover:text-black"
                   >
                     <Link href="/dashboard">Add</Link>
                   </Button>

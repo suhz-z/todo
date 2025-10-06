@@ -15,7 +15,7 @@ const poppins = Poppins({
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${poppins.variable}`}>
-      <body className="font-poppins">
+      <body className="font-poppins ">
         <AuthProvider>
           <TodoProvider>
             <div className="app-root">

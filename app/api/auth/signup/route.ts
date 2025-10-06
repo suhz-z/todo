@@ -1,19 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { PrismaClient } from "@prisma/client";
+import { signupSchema } from "@/lib/validation/authSchema";
 
 const prisma = new PrismaClient();
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, email, password } = await req.json();
-
-    if (!email || !password) {
-      return NextResponse.json(
-        { error: "Email and password required" },
-        { status: 400 }
-      );
-    }
+    const body = await req.json();
+    const parsed = signupSchema.parse(body);
+    const { name, email, password } = parsed;
 
     const existingUser = await prisma.user.findUnique({ where: { email } });
     if (existingUser) {
@@ -31,12 +27,12 @@ export async function POST(req: NextRequest) {
 
     const { password: _pw, ...userWithoutPassword } = newUser;
 
-    return NextResponse.json(userWithoutPassword);
-  } catch (error) {
-    console.error(error);
-    return NextResponse.json(
-      { error: "Failed to create user" },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: "Signup successful", newUser });
+  } catch (err) {
+    if (err instanceof Error && "issues" in err) {
+      return NextResponse.json({ error: "Invalid input", details: err }, { status: 400 });
+    }
+    console.error("Signup failed:", err);
+    return NextResponse.json({ error: "Signup failed" }, { status: 500 });
   }
 }

@@ -1,10 +1,10 @@
-// lib/auth.ts
+
 import { NextRequest } from "next/server";
 import jwt from "jsonwebtoken";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
-const JWT_SECRET = process.env.JWT_SECRET || "supersecret"; // must match login route
+const JWT_SECRET = process.env.JWT_SECRET || "supersecret";
 
 export async function getUserFromToken(req: NextRequest) {
   try {
