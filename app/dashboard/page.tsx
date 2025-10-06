@@ -26,13 +26,6 @@ export default function DashboardPage() {
     <div className=''>
       <h1 className="flex text-2xl py-2">Welcome, <p className='font-bold text-red-400'>{ user.name}</p></h1>
       <div className='py-2'>
-      <Button
-        onClick={logout}
-        variant={"outline"}
-        className="flex py-2 border-red-500 text-red-400 hover:text-white rounded hover:bg-red-700 hover:scale-105 transition"
-      >
-        Logout
-      </Button>
       </div>
       <div className='p-6 mt-5'>
       <TodoForm onAdd={addTodo}/>
