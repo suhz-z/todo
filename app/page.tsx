@@ -9,10 +9,10 @@ import { Card } from "@/components/ui/card";
 import { Spinner } from "@/components/ui/spinner";
 
 export default function Home() {
-  const { todos, toggleTodo, deleteTodo } = useTodos();
-  const { user, loading } = useAuth();
+  const { todos, toggleTodo, deleteTodo, loading: todosLoading } = useTodos();
+  const { user, loading: userloading } = useAuth();
 
-  if (loading) {
+  if (userloading || todosLoading) {
     return (
       <div className="flex items-center gap-4">
         <Spinner />
@@ -56,12 +56,7 @@ export default function Home() {
         <div className="p-4 mt-10">
           
           {todos.length === 0 ? (
-            <p>
-              No todos yet. Add one on the{" "}
-              <a href="/dashboard" className="hover:font-bold hover">
-                New
-              </a>
-            </p>
+            null
           ) : (
             <label className=" font-semibold justify-between">
               You have {todos.length}{" "}
