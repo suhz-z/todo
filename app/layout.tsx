@@ -3,17 +3,19 @@ import { ReactNode } from "react";
 import { TodoProvider } from "@/data/TodoContext";
 import { AuthProvider } from "@/data/authContext";
 import Header from "@/components/Header";
+import { Poppins } from "next/font/google";
+
+const poppins = Poppins({
+  subsets: ["latin"],       
+  weight: ["400", "600", "700"],
+  variable: "--font-poppins", 
+});
+
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
-      <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body>
+    <html lang="en" className={`${poppins.variable}`}>
+      <body className="font-poppins">
         <AuthProvider>
           <TodoProvider>
             <div className="app-root">

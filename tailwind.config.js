@@ -1,14 +1,15 @@
+
+
+
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Poppins", "sans-serif"],
+        poppins: ["var(--font-poppins)", "sans-serif"],
       },
     },
   },
-  plugins: [
-  require('tailwindcss-text-fill-stroke'),
-  ],
-
+  // rest of config …
 };
 
