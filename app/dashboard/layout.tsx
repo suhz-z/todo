@@ -10,8 +10,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const { user, logout } = useAuth();
 
   return (
-    <div className="min-h-screen flex flex-col text-white">
-      {/* Dashboard Navbar */}
+    <div className=" font-poppins flex flex-col text-white">
       <header className="flex justify-between items-center px-6 py-4 border-b border-gray-700">
         <h1 className="text-xl font-bold">Dashboard</h1>
         <nav className="flex items-center gap-4">

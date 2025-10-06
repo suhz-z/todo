@@ -24,13 +24,16 @@ export default function Header() {
   }
 
   return (
-    <header className="header">
+    <header className="header flex justify-between items-center  py-4 border-b border-gray-800">
+      <div className="">
       <Link
         href="/"
-        className="p-2 scale-120 h-12 font-bold font-poppins text-white hover:text-gray-300 transition"
+        className="p-2 text-xl h-12 font-bold font-poppins text-white hover:text-gray-300 transition"
       >
         Todo App{" "}
       </Link>
+      </div>
+      <div>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -69,6 +72,7 @@ export default function Header() {
             </BreadcrumbLink>
         </BreadcrumbList>
       </Breadcrumb>
+      </div>
     </header>
   );
 }
