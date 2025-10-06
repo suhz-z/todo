@@ -22,17 +22,19 @@ export default function Home() {
 
   if (!user) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen text-center text-white">
+      <div className=" mt-40 flex-col items-center justify-center h-screen text-center text-white">
         <h1 className="text-3xl font-bold">Welcome to Todo App</h1>
         <p className="text-gray-400 mt-2">
           Sign in to create your personal todos.
         </p>
+        <Button variant='outline'className="border-blue-400 hover:bg-blue-500 hover:scale-105 flex-col items-center mt-5">
         <Link
           href="/login"
-          className="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded text-white"
+          className=" px-4 py-2  text-white"
         >
           Login
         </Link>
+        </Button>
       </div>
     );
   }
