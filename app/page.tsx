@@ -47,7 +47,7 @@ export default function Home() {
               variant="outline"
               className=" border-green-500 hover:bg-green-500 hover:text-black"
             >
-              <Link href="/new">Add</Link>
+              <Link href="/dashboard">Add</Link>
             </Button>
           </div>
         </header>
@@ -56,7 +56,7 @@ export default function Home() {
           {todos.length === 0 ? (
             <p>
               No todos yet. Add one on the{" "}
-              <a href="/new" className="hover:font-bold hover">
+              <a href="/dashboard" className="hover:font-bold hover">
                 New
               </a>
             </p>
@@ -80,7 +80,7 @@ export default function Home() {
                     variant={"outline"}
                     className="w-178 scale-110 border-green-500 hover:bg-green-500 hover:text-black"
                   >
-                    <Link href="/new">Add</Link>
+                    <Link href="/dashboard">Add</Link>
                   </Button>
                 </div>
               </Card>
