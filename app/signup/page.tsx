@@ -54,7 +54,7 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="p-30">
+    <div className="mt-10 p-10">
       <Card className=" bg-black/60 backdrop-blur-md border border-white/20 shadow-xl rounded-2xl">
         <CardHeader>
           <CardTitle className="text-blue-400">Create a new account</CardTitle>
