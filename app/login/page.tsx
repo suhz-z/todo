@@ -52,7 +52,7 @@ export default function LoginPage() {
   };
 
 return (
-  <div className="mx-50 my-17">
+  <div className="p-40">
     <Card className=" bg-black backdrop-blur-md border border-white/20 shadow-xl rounded-2xl">
       <CardHeader>
         <CardTitle className="text-red-400">Login to your account</CardTitle>
