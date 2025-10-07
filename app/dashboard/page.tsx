@@ -44,7 +44,7 @@ export default function DashboardPage() {
       <h1 className="flex text-2xl py-2">
         Welcome, <p className="font-bold text-red-400">{user.name}</p>
       </h1>
-      <div className="p-6 mt-5 ">
+      <div className="p-6 mt-5">
         <TodoForm onAdd={addTodo} />
         <div className="mt-5">
           <label className="font-semibold">
