@@ -24,9 +24,9 @@ export default function Header() {
   }
 
   return (
-    <div className="w-screen -mx-[calc((100vw-100%)/2)] bg-gray-500/10">
+    <div className=" ">
     <div className=" font-poppins flex flex-col text-white">
-    <header className="flex  justify-between mx-139 px-6 py-4 border-b border-gray-700">
+    <header className="flex justify-between items-center px-6 py-4 border-b border-gray-700 bg-gray-500/10 ">
       
       <Link
         href="/"
@@ -34,7 +34,7 @@ export default function Header() {
       >
         Todo App{" "}
       </Link>
-      <nav className=" flex items-center gap-4">
+      <nav className="">
       <Breadcrumb className="">
         <BreadcrumbList className="text-base">
           <BreadcrumbItem className="">
