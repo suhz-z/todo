@@ -56,7 +56,7 @@ return (
     <Card className=" bg-black backdrop-blur-md border border-white/20 shadow-xl rounded-2xl">
       <CardHeader>
         <CardTitle className="text-red-400">Login to your account</CardTitle>
-      </CardHeader>mobile
+      </CardHeader>
       <CardContent>
         <form id="login" onSubmit={handleSubmit} >
           <div className="flex flex-col gap-6">
