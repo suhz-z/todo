@@ -7,7 +7,6 @@ const prisma=new PrismaClient()
 
 
 export async function GET(req: NextRequest) {
-  console.log("incoming authorization:", req.headers.get("authorization"));
   const user = await getUserFromToken(req);
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
@@ -45,27 +44,26 @@ export async function POST(req: NextRequest) {
 
 
 export async function PUT(req: NextRequest) {
-  const user = await getUserFromToken(req);
-  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
   try {
-    const { id, completed } = await req.json();
+    const { id, text, completed } = await req.json();
+    const user = await getUserFromToken(req); // from your JWT helper
+    if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-    const todo = await prisma.todo.findUnique({ where: { id } });
-    if (!todo || todo.authorId !== user.id)
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-
-    const updatedTodo = await prisma.todo.update({
-      where: { id },
-      data: { completed },
+    const updated = await prisma.todo.update({
+      where: { id, authorId: user.id },
+      data: {
+        ...(text !== undefined && { text }),
+        ...(completed !== undefined && { completed }),
+      },
     });
 
-    return NextResponse.json(updatedTodo);
+    return NextResponse.json(updated);
   } catch (err) {
-    console.error("PUT todos error:", err);
-    return NextResponse.json({ error: "Failed to update todo" }, { status: 500 });
+    console.error(err);
+    return NextResponse.json({ error: "Update failed" }, { status: 500 });
   }
 }
+
 
 
 export async function DELETE(req: NextRequest) {

@@ -11,7 +11,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { TodoFilter } from "@/components/TodoFilter";
 
 export default function Home() {
-  const { todos, toggleTodo, deleteTodo, loading: todosLoading } = useTodos();
+  const { todos, toggleTodo, deleteTodo, editTodo, loading: todosLoading } = useTodos();
   const { user, loading: userloading } = useAuth();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -101,6 +101,7 @@ export default function Home() {
                   todo={t}
                   onToggle={toggleTodo}
                   onDelete={deleteTodo}
+                  onEdit={editTodo}
                 />
               ))}
             </ul>

@@ -36,7 +36,7 @@ export default function TodoForm({ onAdd }: Props) {
         placeholder="Add a new todo"
         disabled={loading}
       />
-      <Button  variant='outline' type="submit" disabled={loading} className=' group-hover:border-green-500 group-focus:border-green-500 hover:border-green-500 flex gap-8 '>
+      <Button  variant='outline' type="submit" disabled={loading} className=' group-hover:border-green-500 hover:bg-green-500/15 hover:border-green-500 flex gap-8 '>
         {loading ? 'Adding...' : 'Add'}
       </Button>
     </form>

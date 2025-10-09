@@ -11,7 +11,8 @@ type TodoContextType = {
   todos: Todo[];                               // All todos for the logged-in user
   addTodo: (text: string) => Promise<void>;   
   toggleTodo: (id: number) => Promise<void>;  
-  deleteTodo: (id: number) => Promise<void>;   
+  deleteTodo: (id: number) => Promise<void>;
+  editTodo: (id: number, newText: string) => Promise<void>;   
   loading: boolean;                            
 }
 
@@ -41,7 +42,6 @@ export const TodoProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const fetchTodos = async () => {
       try {
         setLoading(true);
-        console.log("Token in TodoProvider:", token);
 
         // send request to get users todos with Authorization header
         const res = await fetch(API_URL, {
@@ -84,6 +84,30 @@ export const TodoProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const newTodo: Todo = await res.json(); // get created todo from backend
     setTodos((prev) => [newTodo, ...prev]); // add to top of list
   };
+
+  const editTodo = async (id: number, newText: string) => {
+    if (!token) return;
+    try{
+    const res = await fetch(API_URL, {
+      method:'PUT',
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`, // attach token
+      },
+      body: JSON.stringify({ id, text: newText }), // send todo text
+    });
+
+    if (!res.ok) return console.error(await res.text());
+
+    const editedTodo: Todo = await res.json()
+    setTodos((prev) => prev.map((t) => (t.id === id ? editedTodo : t)));
+    }
+    catch (err) {
+      console.error("failed to edit todo: ",err)
+    }
+    
+
+  }
 
   // toggle a todos completed state
   const toggleTodo = async (id: number) => {
@@ -130,7 +154,7 @@ export const TodoProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // provide todo data and actions to all children
   return (
     <TodoContext.Provider
-      value={{ todos, addTodo, toggleTodo, deleteTodo, loading }}
+      value={{ todos, addTodo, toggleTodo, deleteTodo, editTodo, loading }}
     >
       {children}
     </TodoContext.Provider>

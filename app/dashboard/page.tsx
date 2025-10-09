@@ -19,6 +19,7 @@ export default function DashboardPage() {
     toggleTodo,
     deleteTodo,
     addTodo,
+    editTodo,
     loading: todosLoading,
   } = useTodos();
   const router = useRouter();
@@ -85,6 +86,7 @@ export default function DashboardPage() {
                     todo={todo}
                     onToggle={toggleTodo}
                     onDelete={deleteTodo}
+                    onEdit={editTodo}
                   />
                 ))}
               </ul>
