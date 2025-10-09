@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
       data: { name, email, password: hashedPassword },
     });
 
-    const { password: _pw, ...userWithoutPassword } = newUser;
+    const { password: _pw } = newUser;
 
     return NextResponse.json({ message: "Signup successful", newUser });
   } catch (err) {

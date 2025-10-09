@@ -2,14 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CircleCheckIcon, CircleHelpIcon, CircleIcon } from "lucide-react";
-import { SlashIcon } from "lucide-react";
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
@@ -25,8 +22,8 @@ export default function Header() {
 
   return (
     <div className=" ">
-    <div className=" font-poppins flex flex-col text-white">
-    <header className="flex justify-between items-center px-6 py-4 border-b border-gray-700 bg-gray-500/10 ">
+    <div className=" font-poppins flex-col text-white">
+    <header className="flex justify-between items-center px-6 py-3 border-b border-gray-700 bg-gray-500/10 ">
       
       <Link
         href="/"

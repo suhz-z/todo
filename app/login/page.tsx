@@ -6,8 +6,9 @@ import { useAuth } from '@/data/authContext';
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, } from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle, } from "@/components/ui/card";
 import { Label } from "@radix-ui/react-label";
+import toast from "react-hot-toast";
 
 
 export default function LoginPage() {
@@ -35,6 +36,7 @@ export default function LoginPage() {
 
       if (!res.ok) {
         setError(data.error || "Login failed");
+        toast.error('Invalid Credentials')
         setLoading(false);
         return;
       }

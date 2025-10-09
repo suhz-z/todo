@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from './ui/input'
+import toast from 'react-hot-toast'
 
 type Props = { onAdd: (text: string) => Promise<void> }
 
@@ -16,9 +17,11 @@ export default function TodoForm({ onAdd }: Props) {
     setLoading(true)
     try {
       await onAdd(trimmed)
+      toast.success('added todo')
       setText('')
     } catch (err) {
       console.error('Failed to add todo:', err)
+      toast.error('failed to add todo')
     } finally {
       setLoading(false)
     }
