@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useAuth } from "@/data/authContext";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Spinner } from "@/components/ui/spinner";
 import { useSearchParams, useRouter } from "next/navigation";
 import { TodoFilter } from "@/components/TodoFilter";
 
@@ -35,13 +34,7 @@ export default function Home() {
     return todos;
   }, [filter, todos]);
 
-  if (userloading || todosLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <Spinner className="w-10 h-5" />
-      </div>
-    );
-  }
+  
 
   if (!user) {
     return (
@@ -72,7 +65,7 @@ export default function Home() {
           <div className="flex">
             <Button
               variant="outline"
-              className="border-green-500 hover:bg-green-500 hover:text-black"
+              className="border-green-500 hover:bg-green-500/15"
             >
               <Link href="/dashboard">Add</Link>
             </Button>
@@ -109,7 +102,7 @@ export default function Home() {
             <div className="flex mt-5 justify-center">
               <Button
                 variant="outline"
-                className=" w-full border-green-500 hover:bg-green-500 hover:text-black"
+                className=" w-full border-green-500 hover:bg-green-500/15 "
               >
                 <Link href="/dashboard">Add</Link>
               </Button>

@@ -36,7 +36,7 @@ export default function Header() {
         <BreadcrumbList className="text-base">
           <BreadcrumbItem className="">
             <BreadcrumbLink asChild>
-              <Link className="hover:font-bold" href="/">Home</Link>
+              <Link className=" hover:text-gray-300" href="/">Home</Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator>
@@ -46,7 +46,7 @@ export default function Header() {
             <>
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link className="hover:font-bold" href="/login">
+                  <Link className="hover:text-gray-300" href="/login">
                     Login
                   </Link>
                 </BreadcrumbLink>
@@ -57,7 +57,7 @@ export default function Header() {
             <>
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link className="hover:font-bold" href="/dashboard">
+                  <Link className="hover:text-gray-300" href="/dashboard">
                     Dashboard
                   </Link>
                 </BreadcrumbLink>
@@ -66,7 +66,7 @@ export default function Header() {
             </>
           )}
           <BreadcrumbLink asChild>
-              <Link className='hover:font-bold' href="/about">About</Link>
+              <Link className='hover:text-gray-300' href="/about">About</Link>
             </BreadcrumbLink>
         </BreadcrumbList>
       </Breadcrumb>
