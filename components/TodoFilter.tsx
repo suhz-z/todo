@@ -6,7 +6,7 @@ import {
   ButtonGroup,
   ButtonGroupSeparator,
 } from "@/components/ui/button-group";
-import { useAuth } from "@/data/authContext";
+
 
 
 export type FilterType = "all" | "completed" | "active";

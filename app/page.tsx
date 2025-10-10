@@ -10,8 +10,13 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { TodoFilter } from "@/components/TodoFilter";
 
 export default function Home() {
-  const { todos, toggleTodo, deleteTodo, editTodo, loading: todosLoading } = useTodos();
-  const { user, loading: userloading } = useAuth();
+  const {
+    todos,
+    toggleTodo,
+    deleteTodo,
+    editTodo,
+  } = useTodos();
+  const { user } = useAuth();
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -33,8 +38,6 @@ export default function Home() {
     if (filter === "active") return todos.filter((t) => !t.completed);
     return todos;
   }, [filter, todos]);
-
-  
 
   if (!user) {
     return (
@@ -79,8 +82,7 @@ export default function Home() {
               {filteredTodos.length === 1 ? "todo left" : "todos"}
             </label>
             <div className="mb-5">
-
-            <TodoFilter currentFilter={filter} onChange={setFilter} />
+              <TodoFilter currentFilter={filter} onChange={setFilter} />
             </div>
           </div>
         )}
@@ -93,8 +95,9 @@ export default function Home() {
                   key={t.id}
                   todo={t}
                   onToggle={toggleTodo}
-                  onDelete={deleteTodo}
                   onEdit={editTodo}
+                  onDelete={deleteTodo}
+                  
                 />
               ))}
             </ul>

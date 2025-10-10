@@ -23,15 +23,16 @@ import {
   SheetTitle,
   SheetDescription,
   SheetFooter,
-  SheetClose,
 } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
 
 type Props = {
   todo: Todo;
   onToggle: (id: number) => Promise<void>;
+  
   onDelete: (id: number) => Promise<void>;
-  onEdit: (id: number, string: string) => Promise<void>;
+  onEdit : (id: number, string: string) => Promise<void>;
+  
 };
 
 export const TodoItem = ({ todo, onToggle, onDelete, onEdit }: Props) => {
@@ -79,7 +80,7 @@ export const TodoItem = ({ todo, onToggle, onDelete, onEdit }: Props) => {
 
     try {
       setIsEditing(true);
-      await onEdit(todo.id, trimmed);
+      await onEdit(todo.id, trimmed)
       console.log("added");
       toast.success("Task Completed");
     } catch (err) {
