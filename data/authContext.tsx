@@ -1,4 +1,4 @@
-"use client" // client component it uses hooks, state, etc
+"use client" 
 
 import { createContext, useContext, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"

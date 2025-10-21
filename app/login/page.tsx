@@ -54,7 +54,7 @@ export default function LoginPage() {
   };
 
 return (
-  <div className="mt-10 p-10">
+  <div className=" flex mt-10 p-10">
     <Card className=" bg-black backdrop-blur-md border border-white/20 shadow-xl rounded-2xl">
       <CardHeader>
         <CardTitle className="text-red-400">Login to your account</CardTitle>
